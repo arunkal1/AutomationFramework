@@ -10,7 +10,7 @@
     public class ConfigReader
     {
         // Variable to store executing directory of the test.
-        private static string executingDirectory = Directory.GetCurrentDirectory();
+        private static string executingDirectory = Directory.GetCurrentDirectory().Replace(@"\bin\Debug\netcoreapp3.1", string.Empty);
 
         /// <summary>
         /// Read appconfig files and gather browser and variable data.
