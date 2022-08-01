@@ -4,7 +4,7 @@
 @Assignment2
 Scenario: UNiDAYS Navigation Journey
 	Given the user navigates to the following URL 'https://www.myunidays.com/'
-	# Verify home page loaded
+	And confirms the homepage has loaded and all navigation tabs are clickable and display content
 	# Click all top navigation links are clickable and display content
 	# Click Join Now
 	# Check all combinations of mandatory fields only
