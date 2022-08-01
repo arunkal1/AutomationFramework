@@ -1,0 +1,6 @@
+{
+  "TestSetting": {
+    "Browser": "CHROME",
+    "TestLocation": "LOCAL"
+  }
+}
