@@ -5,6 +5,7 @@
     using AutomationUI.Pages;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Support.UI;
+    using System;
     using TechTalk.SpecFlow;
 
     /// <summary>
@@ -103,6 +104,16 @@
         }
 
         /// <summary>
+        /// The user confirms the home page has loaded successfully.
+        /// </summary>
+        [StepDefinition(@"the user confirms the homepage has loaded")]
+        public void WhenTheUserConfirmsTheHomepageHasLoaded()
+        {
+            // Confirms the Home Page has loaded.
+            uNiDAYHomePage.ConfirmHomePageLoaded();
+        }
+
+        /// <summary>
         /// The user clicks on the join now tab.
         /// </summary>
         [StepDefinition(@"the user clicks on the join now tab")]
@@ -120,7 +131,33 @@
         [StepDefinition(@"the user enters the registration information into the join now form")]
         public void ThenTheUserEntersTheRegistrationInformationIntoTheJoinNowForm(Table table)
         {
-            
+            var dictionary = TableExtensions.ToDictionary(table);
+
+            // To make the email unique and tests re-usable the timeStamp variable is replaced with the current time.
+            if (dictionary["personalEmailAddress"].Contains("{{timeStamp}}"))
+            {
+                dictionary["personalEmailAddress"] = dictionary["personalEmailAddress"].Replace("{{timeStamp}}", DateTime.UtcNow.TimeOfDay.ToString().Replace(":", string.Empty).Replace(".", string.Empty));
+            }
+
+            // If the confirm personal email address is to have the same email as the personal email address then it sets confirm personal email address value to same value as personal email.
+            if (dictionary["confirmPersonalEmailAddress"].Contains("{{timeStamp}}"))
+            {
+                dictionary["confirmPersonalEmailAddress"] = dictionary["personalEmailAddress"];
+            }
+
+            uNiDAYJoinNowPage.EnterPersonalEmailAddress(dictionary["personalEmailAddress"]);
+            uNiDAYJoinNowPage.EnterConfirmPersonalEmailAddress(dictionary["confirmPersonalEmailAddress"]);
+            uNiDAYJoinNowPage.EnterPassword(dictionary["password"]);
+            uNiDAYJoinNowPage.EnterConfirmPassword(dictionary["confirmPassword"]);
+            uNiDAYJoinNowPage.SelectGenderOption(dictionary["gender"]);
+            uNiDAYJoinNowPage.AcceptTerms(dictionary["acceptTerms"]);
+            uNiDAYJoinNowPage.ClickJoinNowButton(dictionary["successOrFailure"]);
+
+            // If the join now attempt was successful, as part of the test it logs out the newly created account and redirects back to the home page, so this confirms it is back on the homepage.
+            if (dictionary["successOrFailure"].Equals("success"))
+            {
+                uNiDAYHomePage.ConfirmHomePageLoaded(false);
+            }
         }
     }
 }

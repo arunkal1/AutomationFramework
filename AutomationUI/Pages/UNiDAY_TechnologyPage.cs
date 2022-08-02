@@ -38,7 +38,7 @@
         /// <returns>Confirmation is on the page.</returns>
         public UNiDAY_TechnologyPage ConfirmTechnologyPageLoaded()
         {
-            wait.Until((d) => TechnologyPageHeader.Displayed);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//h1[contains(.,'Technology')][@class='title ']")));
             return new UNiDAY_TechnologyPage();
         }
 

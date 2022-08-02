@@ -37,7 +37,7 @@
         /// <returns>Confirmation is on the page.</returns>
         public UNiDAY_HealthAndFitnessPage ConfirmHealthAndFitnessPageLoaded()
         {
-            wait.Until((d) => HealthAndFitnessPageHeader.Displayed);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//h1[contains(.,'Health & Fitness')][@class='title ']")));
             return new UNiDAY_HealthAndFitnessPage();
         }
 

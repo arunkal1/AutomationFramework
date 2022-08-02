@@ -80,10 +80,15 @@
         /// <summary>
         /// Confirms the UNiDAYS Home Page's header has loaded.
         /// </summary>
+        /// <param name="checkCookiesMessage">Boolean parameter to check if the cookies message is expected to appear.</param>
         /// <returns>Confirmation is on the page.</returns>
-        public UNiDAY_HomePage ConfirmHomePageLoaded()
+        public UNiDAY_HomePage ConfirmHomePageLoaded(bool checkCookiesMessage = true)
         {
-            CheckIfCookiesMessageShown();
+            if (checkCookiesMessage.Equals(true))
+            {
+                CheckIfCookiesMessageShown();
+            }
+
             wait.Until((d) => HomePageHeader.Displayed);
             return new UNiDAY_HomePage();
         }

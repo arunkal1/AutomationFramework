@@ -29,7 +29,7 @@
         /// Gets Elements on the page.
         /// </summary>
         private IWebElement LimitedTimeOnlyPageHeader =>
-            driver.FindElement(By.XPath("//h1[contains(.,'Limited time only!')][@class='title ']"));
+            driver.FindElement(By.XPath("//h1[contains(.,'Limited time only')][@class='title ']"));
 
         /// <summary>
         /// Confirms the UNiDAYS Limited Time Only Page's header has loaded.
@@ -37,7 +37,7 @@
         /// <returns>Confirmation is on the page.</returns>
         public UNiDAY_LimitedTimeOnlyPage ConfirmLimitedTimeOnlyPageLoaded()
         {
-            wait.Until((d) => LimitedTimeOnlyPageHeader.Displayed);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//h1[contains(.,'Limited time only')][@class='title ']")));
             return new UNiDAY_LimitedTimeOnlyPage();
         }
 

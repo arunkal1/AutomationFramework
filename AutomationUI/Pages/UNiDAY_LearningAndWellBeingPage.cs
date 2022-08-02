@@ -3,6 +3,7 @@
     using AutomationFramework.Utils;
     using AutomationUI.Hooks;
     using OpenQA.Selenium;
+    using OpenQA.Selenium.Interactions;
     using OpenQA.Selenium.Support.UI;
 
     /// <summary>
@@ -47,17 +48,11 @@
         /// <returns>Confirmation is on the page.</returns>
         public UNiDAY_LearningAndWellBeingPage ConfirmLearningAndWellbeingPageLoaded()
         {
-            // If the popover from the Learning & Wellbeing tab is covering the page then it clicks the navigation header again to hide this popover.
-            try
-            {
-                CustomWait.WaitForElementToExist(LearningAndWellbeingPageHeader);
-            }
-            catch (System.Exception)
-            {
-                driver.FindElement(By.XPath("//a[contains(.,'Learning & Wellbeing')]")).Click();
-                wait.Until((d) => LearningAndWellbeingPageHeader.Displayed);
-            }
+            // Sometimes if the mouse is hovering over the 'Learning & Wellbeing' tab then the popover exists over the screen, this moves the focus away from that.
+            Actions action = new Actions(driver);
+            action.MoveByOffset(10, 20).Perform();
 
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[contains(.,'Learning and career-building tools')]")));
             return new UNiDAY_LearningAndWellBeingPage();
         }
 

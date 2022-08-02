@@ -38,7 +38,7 @@
         /// <returns>Confirmation is on the page.</returns>
         public UNiDAY_FashionPage ConfirmFashionPageLoaded()
         {
-            wait.Until((d) => FashionPageHeader.Displayed);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//h1[contains(.,'Fashion')][@class='title ']")));
             return new UNiDAY_FashionPage();
         }
 

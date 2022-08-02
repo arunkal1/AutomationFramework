@@ -38,7 +38,7 @@
         /// <returns>Confirmation is on the page.</returns>
         public UNiDAY_BeautyPage ConfirmBeautyPageLoaded()
         {
-            wait.Until((d) => BeautyPageHeader.Displayed);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//h1[contains(.,'Beauty')][@class='title ']")));
             return new UNiDAY_BeautyPage();
         }
 

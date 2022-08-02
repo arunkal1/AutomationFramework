@@ -38,7 +38,7 @@
         /// <returns>Confirmation is on the page.</returns>
         public UNiDAY_FoodAndDrinkPage ConfirmFoodAndDrinkPageLoaded()
         {
-            wait.Until((d) => FoodAndDrinkPageHeader.Displayed);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//h1[contains(.,'Food & Drink')][@class='title ']")));
             return new UNiDAY_FoodAndDrinkPage();
         }
 

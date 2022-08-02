@@ -38,7 +38,7 @@
         /// <returns>Confirmation is on the page.</returns>
         public UNiDAY_LifestylePage ConfirmLifestylePageLoaded()
         {
-            wait.Until((d) => LifestylePageHeader.Displayed);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//h1[contains(.,'Lifestyle')][@class='title ']")));
             return new UNiDAY_LifestylePage();
         }
 
