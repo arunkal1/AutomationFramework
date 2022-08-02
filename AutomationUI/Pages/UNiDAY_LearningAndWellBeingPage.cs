@@ -47,7 +47,17 @@
         /// <returns>Confirmation is on the page.</returns>
         public UNiDAY_LearningAndWellBeingPage ConfirmLearningAndWellbeingPageLoaded()
         {
-            CustomWait.WaitForElementToExist(LearningAndWellbeingPageHeader);
+            // If the popover from the Learning & Wellbeing tab is covering the page then it clicks the navigation header again to hide this popover.
+            try
+            {
+                CustomWait.WaitForElementToExist(LearningAndWellbeingPageHeader);
+            }
+            catch (System.Exception)
+            {
+                driver.FindElement(By.XPath("//a[contains(.,'Learning & Wellbeing')]")).Click();
+                wait.Until((d) => LearningAndWellbeingPageHeader.Displayed);
+            }
+
             return new UNiDAY_LearningAndWellBeingPage();
         }
 

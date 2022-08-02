@@ -54,7 +54,28 @@
             driver.FindElement(By.XPath("(//a[contains(.,'Health & Fitness')])[3]"));
 
         private IWebElement AllTab =>
-            driver.FindElement(By.XPath("(//a[contains(.,'All')])[3]"));
+            driver.FindElement(By.XPath("(//a[contains(.,'All')])[12]"));
+
+        private IWebElement DropdownMenuButton =>
+            driver.FindElement(By.XPath("//button[@class='menu-icon-container']"));
+
+        private IWebElement JoinNowButton =>
+            driver.FindElement(By.XPath("//a[@class='button medium register'][contains(.,'Join now')]"));
+
+        /// <summary>
+        /// Checks if there is a cookies message shown to the user, if so cookies are accepted.
+        /// </summary>
+        /// <returns>Cookies accepted if message shown.</returns>
+        public UNiDAY_HomePage CheckIfCookiesMessageShown()
+        {
+            wait.Until((d) => d.FindElement(By.XPath("//button[contains(.,'Accept all cookies')]")).Displayed);
+            if (driver.FindElement(By.XPath("//button[contains(.,'Accept all cookies')]")).Displayed)
+            {
+                driver.FindElement(By.XPath("//button[contains(.,'Accept all cookies')]")).Click();
+            }
+
+            return new UNiDAY_HomePage();
+        }
 
         /// <summary>
         /// Confirms the UNiDAYS Home Page's header has loaded.
@@ -62,7 +83,8 @@
         /// <returns>Confirmation is on the page.</returns>
         public UNiDAY_HomePage ConfirmHomePageLoaded()
         {
-            CustomWait.WaitForElementToExist(HomePageHeader);
+            CheckIfCookiesMessageShown();
+            wait.Until((d) => HomePageHeader.Displayed);
             return new UNiDAY_HomePage();
         }
 
@@ -162,6 +184,30 @@
         {
             CustomWait.WaitForElementToExist(AllTab);
             AllTab.Click();
+            return new UNiDAY_HomePage();
+        }
+
+        /// <summary>
+        /// Clicks the left dropdown menu button.
+        /// </summary>
+        /// <returns>Menu bar opened and waits for elements inside its menu to load.</returns>
+        public UNiDAY_HomePage ClickDropdownMenuButton()
+        {
+            CustomWait.WaitForElementToExist(DropdownMenuButton);
+            DropdownMenuButton.Click();
+            IWebElement joinNowButton = driver.FindElement(By.XPath("//a[@class='button medium register'][contains(.,'Join now')]"));
+            CustomWait.WaitForElementToExist(joinNowButton);
+            return new UNiDAY_HomePage();
+        }
+
+        /// <summary>
+        /// Click's the Join Now Button from the left dropdown menu.
+        /// </summary>
+        /// <returns>Join Now Button clicked.</returns>
+        public UNiDAY_HomePage ClickJoinNowButton()
+        {
+            CustomWait.WaitForElementToExist(JoinNowButton);
+            JoinNowButton.Click();
             return new UNiDAY_HomePage();
         }
     }

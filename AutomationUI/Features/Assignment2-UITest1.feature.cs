@@ -76,11 +76,43 @@ namespace AutomationUI.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("UNiDAYS Navigation Journey")]
         [NUnit.Framework.CategoryAttribute("Assignment2")]
-        public void UNiDAYSNavigationJourney()
+        [NUnit.Framework.TestCaseAttribute("01-personalEmailOnly", "personalEmail@mail.com", "", "", "", "", "", "allFieldsNotEntered", null)]
+        [NUnit.Framework.TestCaseAttribute("02-confirmPersonalEmailOnly", "", "personalEmail@mail.com", "", "", "", "", "allFieldsNotEntered", null)]
+        [NUnit.Framework.TestCaseAttribute("03-passwordOnly", "", "", "p4$$w0rd123.", "", "", "", "allFieldsNotEntered", null)]
+        [NUnit.Framework.TestCaseAttribute("04-confirmPasswordOnly", "", "", "", "p4$$w0rd123.", "", "", "allFieldsNotEntered", null)]
+        [NUnit.Framework.TestCaseAttribute("05-genderOnlyMale", "", "", "", "", "Male", "", "allFieldsNotEntered", null)]
+        [NUnit.Framework.TestCaseAttribute("06-genderOnlyFemail", "", "", "", "", "Female", "", "allFieldsNotEntered", null)]
+        [NUnit.Framework.TestCaseAttribute("07-genderOnlyPreferNotToSay", "", "", "", "", "Prefer not to say", "", "allFieldsNotEntered", null)]
+        [NUnit.Framework.TestCaseAttribute("08-acceptTermsOnly", "", "", "", "", "", "Yes", "allFieldsNotEntered", null)]
+        [NUnit.Framework.TestCaseAttribute("09-allFiledInGenderMale", "personalEmail{{dateTimeStamp}}@mail.com", "personalEmail{{dateTimeStamp}}@mail.com", "p4$$w0rd123.", "p4$$w0rd123.", "Male", "Yes", "success", null)]
+        [NUnit.Framework.TestCaseAttribute("10-allFiledInGenderFemale", "personalEmail{{dateTimeStamp}}@mail.com", "personalEmail{{dateTimeStamp}}@mail.com", "p4$$w0rd123.", "p4$$w0rd123.", "Female", "Yes", "success", null)]
+        [NUnit.Framework.TestCaseAttribute("11-allFiledInGenderPreferNotToSay", "personalEmail{{dateTimeStamp}}@mail.com", "personalEmail{{dateTimeStamp}}@mail.com", "p4$$w0rd123.", "p4$$w0rd123.", "Prefer not to say", "Yes", "success", null)]
+        [NUnit.Framework.TestCaseAttribute("12-acceptTermsMissingGenderMale", "personalEmail{{dateTimeStamp}}@mail.com", "personalEmail{{dateTimeStamp}}@mail.com", "p4$$w0rd123.", "p4$$w0rd123.", "Male", "", "allFieldsNotEntered", null)]
+        [NUnit.Framework.TestCaseAttribute("13-acceptTermsMissingGenderFemale", "personalEmail{{dateTimeStamp}}@mail.com", "personalEmail{{dateTimeStamp}}@mail.com", "p4$$w0rd123.", "p4$$w0rd123.", "Female", "", "allFieldsNotEntered", null)]
+        [NUnit.Framework.TestCaseAttribute("14-acceptTermsMissingGenderPreferNotToSay", "personalEmail{{dateTimeStamp}}@mail.com", "personalEmail{{dateTimeStamp}}@mail.com", "p4$$w0rd123.", "p4$$w0rd123.", "Prefer not to say", "", "allFieldsNotEntered", null)]
+        [NUnit.Framework.TestCaseAttribute("15-incorrectFormatEmailGenderMale", "INCORRECTEMAILFORMAT", "INCORRECTEMAILFORMAT", "p4$$w0rd123.", "p4$$w0rd123.", "Male", "Yes", "validationError", null)]
+        [NUnit.Framework.TestCaseAttribute("16-incorrectFormatEmailGenderFemale", "INCORRECTEMAILFORMAT", "INCORRECTEMAILFORMAT", "p4$$w0rd123.", "p4$$w0rd123.", "Female", "Yes", "validationError", null)]
+        [NUnit.Framework.TestCaseAttribute("17-incorrectFormatEmailGenderPreferNotToSay", "INCORRECTEMAILFORMAT", "INCORRECTEMAILFORMAT", "p4$$w0rd123.", "p4$$w0rd123.", "Prefer not to say", "Yes", "validationError", null)]
+        [NUnit.Framework.TestCaseAttribute("18-personalEmailAndConfirmPersonalEmailDoNotMatch", "personalEmail{{dateTimeStamp}}@mail.com", "wrongEmail@mail.com", "p4$$w0rd123.", "p4$$w0rd123.", "Male", "Yes", "validationError", null)]
+        [NUnit.Framework.TestCaseAttribute("19-passwordAndConfirmPasswordDoNotMatch", "personalEmail{{dateTimeStamp}}@mail.com", "personalEmail{{dateTimeStamp}}@mail.com", "p4$$w0rd123.", "wrongPassword", "Male", "Yes", "validationError", null)]
+        public void UNiDAYSNavigationJourney(string testName, string personalEmailAddress, string confirmPersonalEmailAddress, string password, string confirmPassword, string gender, string acceptTerms, string successOrFailure, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "Assignment2"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("testName", testName);
+            argumentsOfScenario.Add("personalEmailAddress", personalEmailAddress);
+            argumentsOfScenario.Add("confirmPersonalEmailAddress", confirmPersonalEmailAddress);
+            argumentsOfScenario.Add("password", password);
+            argumentsOfScenario.Add("confirmPassword", confirmPassword);
+            argumentsOfScenario.Add("gender", gender);
+            argumentsOfScenario.Add("acceptTerms", acceptTerms);
+            argumentsOfScenario.Add("successOrFailure", successOrFailure);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("UNiDAYS Navigation Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
@@ -94,6 +126,40 @@ this.ScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
 #line 6
  testRunner.Given("the user navigates to the following URL \'https://www.myunidays.com/\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 7
+ testRunner.And("confirms the homepage has loaded and all navigation tabs are clickable and displa" +
+                        "y content", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 8
+ testRunner.When("the user clicks on the join now tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table1.AddRow(new string[] {
+                            "personalEmailAddress",
+                            string.Format("{0}", personalEmailAddress)});
+                table1.AddRow(new string[] {
+                            "confirmPersonalEmailAddress",
+                            string.Format("{0}", confirmPersonalEmailAddress)});
+                table1.AddRow(new string[] {
+                            "password",
+                            string.Format("{0}", password)});
+                table1.AddRow(new string[] {
+                            "confirmPassword",
+                            string.Format("{0}", confirmPassword)});
+                table1.AddRow(new string[] {
+                            "gender",
+                            string.Format("{0}", gender)});
+                table1.AddRow(new string[] {
+                            "acceptTerms",
+                            string.Format("{0}", acceptTerms)});
+                table1.AddRow(new string[] {
+                            "successOrFailure",
+                            string.Format("{0}", successOrFailure)});
+#line 9
+ testRunner.Then("the user enters the registration information into the join now form", ((string)(null)), table1, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
