@@ -1,6 +1,8 @@
 ﻿namespace AutomationUI.Hooks
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
     using AutomationFramework;
@@ -115,7 +117,28 @@
             else
             {
                 TestContext.WriteLine("-> done: STEP PASSED");
-                ExtentReportHelper.Test.Log(Status.Info, $"[STEP PASSED] - {this.scenarioContext.StepContext.StepInfo.Text}");
+
+                // If there is a Gherkin table associated with the step then it add's that Gherkin table to the test output on the Extent Report, else, it just outputs the step info text.
+                if (this.scenarioContext.StepContext.StepInfo.Table != null)
+                {
+                    // Heading for the KEY|VALUE section of the Gherkin table.
+                    string gherkinTable = "| Key | Value |" + "<br />";
+
+                    // For each row in the Gherkin table, it will loop over the rows and assign the values to the IList<string>
+                    foreach (TableRow row in this.scenarioContext.StepContext.StepInfo.Table.Rows)
+                    {
+                        IList<string> keyValues = (IList<string>)row.Values;
+
+                        // These values are then added to the string with a new line break after each row.
+                        gherkinTable = gherkinTable + "| " + keyValues[0] + " | " + keyValues[1] + " |" + "<br />";
+                    }
+
+                    ExtentReportHelper.Test.Log(Status.Info, $"[STEP PASSED] - {this.scenarioContext.StepContext.StepInfo.Text}" + "<br />" + "<br />" + $"[GHERKIN TABLE:]" + "<br />" + gherkinTable);
+                }
+                else
+                {
+                    ExtentReportHelper.Test.Log(Status.Info, $"[STEP PASSED] - {this.scenarioContext.StepContext.StepInfo.Text}");
+                }
             }
 
             this.stopwatch.Reset();

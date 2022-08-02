@@ -44,7 +44,12 @@
 
             // Folder path where the HTML Report is to be saved.
             var htmlReporter = new ExtentHtmlReporter(path2.ToString());
-            Extent.AttachReporter(htmlReporter); // Attaches the report.
+
+            // Adds the Dark theme to the Extent Report.
+            htmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
+
+            // Attaches the report.
+            Extent.AttachReporter(htmlReporter);
         }
 
         /// <summary>
