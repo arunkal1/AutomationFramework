@@ -1,4 +1,4 @@
-﻿Feature: Assignment2-UITest1
+﻿Feature: Assignment2
 	Assignment 2: Test a flow and product results with Test Automation Technique
 
 @Assignment2

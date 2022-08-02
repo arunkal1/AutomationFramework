@@ -174,6 +174,15 @@
             IWebElement pageBody = driver.FindElement(By.TagName("body"));
             axeAccessibilityHelper.SetUpAxe(driver, pageBody);
             axeAccessibilityHelper.SetUpResults(driver);
+
+            // Capture Path of AxeReport to add to ExtentTestRunReport.
+            var solutionDir = Path.GetDirectoryName(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, solutionDir, "../..", "Reports & Screenshots", "Axe Compliance Reports");
+            var path2 = Directory.CreateDirectory(path + "/");
+            string axeReportPath = Path.Combine(path2.ToString(), "AxeReport.html");
+
+            // Add's a link to the Extent Report to attach the compliance report.
+            ExtentReportHelper.Test.Info($"<a href='{axeReportPath}' target='_blank' rel='noopener noreferrer'>Click here to view the Axe Accessibility Compliance Report Level</a>");
         }
     }
 }
