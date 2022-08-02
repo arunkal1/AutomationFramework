@@ -1,12 +1,12 @@
 ﻿namespace AutomationUI.Pages
 {
+    using System;
     using AutomationFramework.Utils;
     using AutomationUI.Hooks;
     using NUnit.Framework;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Interactions;
     using OpenQA.Selenium.Support.UI;
-    using System;
 
     /// <summary>
     /// Map elements from the Join Now Page.
@@ -71,7 +71,6 @@
         /// <returns>Confirmation of header load.</returns>
         public UNiDAY_JoinNowPage ConfirmJoinNowPageLoaded()
         {
-            //wait.Until((d) => JoinNowPageHeader.Displayed);
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@id='register_main']//h1[contains(.,'Join UNiDAYS now')][@class='title ']")));
 
             // Sometimes if the mouse is hovering over the 'Learning & Wellbeing' tab then the popover exists over the screen, this moves the focus away from that.

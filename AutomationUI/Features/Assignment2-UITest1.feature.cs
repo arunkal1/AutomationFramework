@@ -177,7 +177,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("acceptTerms", acceptTerms);
             argumentsOfScenario.Add("successOrFailure", successOrFailure);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02_UNiDAYS_JoinNowValidation", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 21
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -187,13 +187,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 22
+#line 21
  testRunner.Given("the user navigates to the following URL \'https://www.myunidays.com/\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 23
+#line 22
  testRunner.And("the user confirms the homepage has loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 24
+#line 23
  testRunner.When("the user clicks on the join now tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -220,8 +220,43 @@ this.ScenarioInitialize(scenarioInfo);
                 table2.AddRow(new string[] {
                             "successOrFailure",
                             string.Format("{0}", successOrFailure)});
-#line 25
+#line 24
  testRunner.Then("the user enters the registration information into the join now form", ((string)(null)), table2, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("03_UNiDAYS_AccessibilityComplianceOfJoinNowPage")]
+        [NUnit.Framework.CategoryAttribute("Assignment2")]
+        public void _03_UNiDAYS_AccessibilityComplianceOfJoinNowPage()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Assignment2"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03_UNiDAYS_AccessibilityComplianceOfJoinNowPage", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 60
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 61
+ testRunner.Given("the user navigates to the following URL \'https://www.myunidays.com/\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 62
+ testRunner.And("the user confirms the homepage has loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 63
+ testRunner.When("the user clicks on the join now tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 64
+ testRunner.Then("the join now\'s page accessibility compliance level is checked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

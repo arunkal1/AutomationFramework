@@ -1,11 +1,15 @@
 ﻿namespace AutomationUI.Steps
 {
+    using System;
+    using System.IO;
     using AutomationFramework.Utils;
     using AutomationUI.Hooks;
     using AutomationUI.Pages;
+    using FluentAssertions;
+    using NUnit.Framework;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Support.UI;
-    using System;
+    using Selenium.Axe;
     using TechTalk.SpecFlow;
 
     /// <summary>
@@ -27,6 +31,7 @@
         private UNiDAY_HealthAndFitnessPage uNiDAYHealthAndFitnessPage = new UNiDAY_HealthAndFitnessPage();
         private UNiDAY_AllPage uNiDAYAllPage = new UNiDAY_AllPage();
         private UNiDAY_JoinNowPage uNiDAYJoinNowPage = new UNiDAY_JoinNowPage();
+        private AxeAccessibilityHelper axeAccessibilityHelper = new AxeAccessibilityHelper();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StepDefs"/> class.
@@ -158,6 +163,17 @@
             {
                 uNiDAYHomePage.ConfirmHomePageLoaded(false);
             }
+        }
+
+        /// <summary>
+        /// The join now's page accessibility compliance level is checked using Selenium.Axe.
+        /// </summary>
+        [StepDefinition(@"the join now's page accessibility compliance level is checked")]
+        public void ThenTheJoinNowSPageAccessibilityComplianceLevelIsChecked()
+        {
+            IWebElement pageBody = driver.FindElement(By.TagName("body"));
+            axeAccessibilityHelper.SetUpAxe(driver, pageBody);
+            axeAccessibilityHelper.SetUpResults(driver);
         }
     }
 }

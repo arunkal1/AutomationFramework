@@ -15,7 +15,6 @@ Scenario: 01_UNiDAYS_NavigationJourney
 	| gender                      | Male                                |
 	| acceptTerms                 | Yes                                 |
 	| successOrFailure            | success                             |
-	# check accessibility compliance level of join now page rendered
 
 @Assignment2
 Scenario Outline: 02_UNiDAYS_JoinNowValidation
@@ -56,3 +55,10 @@ Scenario Outline: 02_UNiDAYS_JoinNowValidation
 	| 20-missingAcceptTermsGenderMale                   | personalEmail{{timeStamp}}@mail.com | personalEmail{{timeStamp}}@mail.com | p4$$w0rd123. | p4$$w0rd123.    | Male              |             | missingAcceptTerms         |
 	| 21-missingAcceptTermsGenderFemale                 | personalEmail{{timeStamp}}@mail.com | personalEmail{{timeStamp}}@mail.com | p4$$w0rd123. | p4$$w0rd123.    | Female            |             | missingAcceptTerms         |
 	| 22-missingAcceptTermsGenderPreferNotToSay         | personalEmail{{timeStamp}}@mail.com | personalEmail{{timeStamp}}@mail.com | p4$$w0rd123. | p4$$w0rd123.    | Prefer not to say |             | missingAcceptTerms         |
+
+@Assignment2
+Scenario: 03_UNiDAYS_AccessibilityComplianceOfJoinNowPage
+	Given the user navigates to the following URL 'https://www.myunidays.com/'
+	And the user confirms the homepage has loaded
+	When the user clicks on the join now tab
+	Then the join now's page accessibility compliance level is checked
