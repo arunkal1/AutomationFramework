@@ -18,5 +18,15 @@
         /// Gets or sets variable for Test Run Location.
         /// </summary>
         public static string TESTLOCATION { get; set; }
+
+        /// <summary>
+        /// Gets or sets variable for API Base URL.
+        /// </summary>
+        public static string APIURL { get; set; }
+
+        /// <summary>
+        /// Gets or sets variable for Stub Location.
+        /// </summary>
+        public static string STUBAPIURL { get; set; }
     }
 }

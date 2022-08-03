@@ -1,0 +1,6 @@
+{
+  "TestSetting": {
+    "APIUrl": "https://api.exchangerate.host",
+    "StubAPIUrl": "LOCAL"
+  }
+}

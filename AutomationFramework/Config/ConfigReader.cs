@@ -32,6 +32,15 @@
                     .Get<ConfigCapture>().TestLocation
                     .ToString();
             }
+            else
+            {
+                ConfigVariables.APIURL = builder.GetSection("TestSetting")
+                    .Get<ConfigCapture>().APIUrl
+                    .ToString();
+                ConfigVariables.STUBAPIURL = builder.GetSection("TestSetting")
+                    .Get<ConfigCapture>().StubAPIUrl
+                    .ToString();
+            }
         }
     }
 }

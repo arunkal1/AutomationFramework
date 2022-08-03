@@ -19,5 +19,17 @@
         /// </summary>
         [JsonProperty("TestLocation")]
         public string TestLocation { get; set; }
+
+        /// <summary>
+        /// Gets or sets the API Base URL.
+        /// </summary>
+        [JsonProperty("APIUrl")]
+        public string APIUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Stub API Base URL.
+        /// </summary>
+        [JsonProperty("StubAPIUrl")]
+        public string StubAPIUrl { get; set; }
     }
 }
