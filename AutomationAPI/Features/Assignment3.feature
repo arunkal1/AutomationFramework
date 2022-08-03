@@ -45,7 +45,7 @@ Scenario Outline: 02_APITestAutomation_StubReturnsResponse
 	| Key           | Value          |
 	| requestType   | GET            |
 	| baseUrl       | {{StubAPIUrl}} |
-	| pathUrl       | /products      |
+	| pathUrl       | /exchangerates |
 	| authenticated | Yes            |
 	And the request is completed and a response is returned
 	And the response status returned should be 'OK'

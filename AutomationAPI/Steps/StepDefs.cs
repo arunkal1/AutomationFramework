@@ -172,17 +172,11 @@
             // Get's the starting index of the second { bracket in the JSON
             var startIndex = capturedFileContents.IndexOf('{', capturedFileContents.IndexOf('{') + 1);
 
-            // Get's the end index of the first } bracket in the JSON
-            var endIndex = capturedFileContents.IndexOf('}') + 1;
-
-            // Calculates the number of characters to keep at the end of JSON, by working out from the end to the } how many characters there are.
-            var numToConcat = capturedFileContents.Length - endIndex;
-
             // Stores the first part of the JSON to keep.
             var output = string.Concat(capturedFileContents.Substring(0, startIndex));
 
-            // Stores the last part of the JSON to keep.
-            var output2 = string.Concat(capturedFileContents.Substring(endIndex, numToConcat));
+            // Stores the last part of the JSON to keep. This will keep the Array end which is required for the format.
+            var output2 = string.Concat(capturedFileContents.Substring(capturedFileContents.Length - 3, 3));
 
             // JSON Response is stored in JObject variable.
             string jsonResponse = JObject.Parse(RestSharpHelper.ResponseBody.Content).ToString();

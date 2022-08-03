@@ -226,7 +226,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "{{StubAPIUrl}}"});
                 table4.AddRow(new string[] {
                             "pathUrl",
-                            "/products"});
+                            "/exchangerates"});
                 table4.AddRow(new string[] {
                             "authenticated",
                             "Yes"});
