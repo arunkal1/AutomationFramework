@@ -130,6 +130,121 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("02_APITestAutomation_StubReturnsResponse")]
+        [NUnit.Framework.CategoryAttribute("Assignment3")]
+        [NUnit.Framework.TestCaseAttribute("USD", null)]
+        [NUnit.Framework.TestCaseAttribute("GBP", null)]
+        public void _02_APITestAutomation_StubReturnsResponse(string baseCurrency, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Assignment3"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("baseCurrency", baseCurrency);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02_APITestAutomation_StubReturnsResponse", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 24
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table2.AddRow(new string[] {
+                            "requestType",
+                            "GET"});
+                table2.AddRow(new string[] {
+                            "baseUrl",
+                            "{{APIUrl}}"});
+                table2.AddRow(new string[] {
+                            "pathUrl",
+                            "/latest"});
+                table2.AddRow(new string[] {
+                            "queryParams",
+                            string.Format("base={0}", baseCurrency)});
+#line 25
+ testRunner.Given("the user send the following API Request", ((string)(null)), table2, "Given ");
+#line hidden
+#line 31
+ testRunner.When("the request is completed and a response is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 32
+ testRunner.Then("the response status returned should be \'OK\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 33
+ testRunner.And("the response content is stored in the database json file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 34
+ testRunner.And("the stub server is started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table3.AddRow(new string[] {
+                            "requestType",
+                            "POST"});
+                table3.AddRow(new string[] {
+                            "baseUrl",
+                            "{{StubAPIUrl}}"});
+                table3.AddRow(new string[] {
+                            "pathUrl",
+                            "/auth/login"});
+                table3.AddRow(new string[] {
+                            "requestBody",
+                            "{\"email\": \"nilson@email.com\",\"password\":\"nilson\"}"});
+#line 35
+ testRunner.And("the user send the following API Request", ((string)(null)), table3, "And ");
+#line hidden
+#line 41
+ testRunner.And("the request is completed and a response is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 42
+ testRunner.And("the response status returned should be \'OK\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 43
+ testRunner.And("the authentication token is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table4.AddRow(new string[] {
+                            "requestType",
+                            "GET"});
+                table4.AddRow(new string[] {
+                            "baseUrl",
+                            "{{StubAPIUrl}}"});
+                table4.AddRow(new string[] {
+                            "pathUrl",
+                            "/products"});
+                table4.AddRow(new string[] {
+                            "authenticated",
+                            "Yes"});
+#line 44
+ testRunner.And("the user send the following API Request", ((string)(null)), table4, "And ");
+#line hidden
+#line 50
+ testRunner.And("the request is completed and a response is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 51
+ testRunner.And("the response status returned should be \'OK\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 52
+ testRunner.And("the stub server is ended", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
