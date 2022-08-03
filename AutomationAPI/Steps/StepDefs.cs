@@ -199,6 +199,7 @@
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, solutionDir, "../../..", "StubJSONServer", "StubJSONServer");
             var path2 = Directory.CreateDirectory(path + "/");
 
+            // Starts the process using CMD and the npm run command.
             var p = new Process
             {
                 StartInfo =
@@ -209,7 +210,8 @@
                 },
             }.Start();
 
-            Thread.Sleep(30000);
+            // Small thread delay to allow for the process to start, by default the Process will return a boolean 'true' if it has started anyway.
+            Thread.Sleep(10000);
         }
 
         /// <summary>

@@ -65,8 +65,8 @@
         [BeforeStep]
         public void BeforeStep()
         {
-            this.stopwatch = new Stopwatch();
-            this.stopwatch.Start();
+            stopwatch = new Stopwatch();
+            stopwatch.Start();
         }
 
         /// <summary>
@@ -77,29 +77,29 @@
         [AfterStep]
         public void AfterStep()
         {
-            this.stopwatch.Stop();
-            TestContext.WriteLine("-> done: " + this.stopwatch.Elapsed.TotalSeconds + "(S)");
+            stopwatch.Stop();
+            TestContext.WriteLine("-> done: " + stopwatch.Elapsed.TotalSeconds + "(S)");
 
-            if (this.scenarioContext.TestError != null)
+            if (scenarioContext.TestError != null)
             {
                 TestContext.WriteLine("-> done: STEP FAILED");
-                ExtentReportHelper.Test.Log(Status.Info, $"[STEP FAILED] - {this.scenarioContext.StepContext.StepInfo.Text}");
+                ExtentReportHelper.Test.Log(Status.Info, $"[STEP FAILED] - {scenarioContext.StepContext.StepInfo.Text}");
 
                 // Mark Extent Report as a failed test due to TestError not being null.
-                ExtentReportHelper.Test.Log(Status.Fail, $"[TEST FAILED] - {this.scenarioContext.TestError.Message}");
+                ExtentReportHelper.Test.Log(Status.Fail, $"[TEST FAILED] - {scenarioContext.TestError.Message}");
             }
             else
             {
                 TestContext.WriteLine("-> done: STEP PASSED");
 
                 // If there is a Gherkin table associated with the step then it add's that Gherkin table to the test output on the Extent Report, else, it just outputs the step info text.
-                if (this.scenarioContext.StepContext.StepInfo.Table != null)
+                if (scenarioContext.StepContext.StepInfo.Table != null)
                 {
                     // Heading for the KEY|VALUE section of the Gherkin table.
                     string gherkinTable = "| Key | Value |" + "<br />";
 
                     // For each row in the Gherkin table, it will loop over the rows and assign the values to the IList<string>
-                    foreach (TableRow row in this.scenarioContext.StepContext.StepInfo.Table.Rows)
+                    foreach (TableRow row in scenarioContext.StepContext.StepInfo.Table.Rows)
                     {
                         IList<string> keyValues = (IList<string>)row.Values;
 
@@ -107,15 +107,21 @@
                         gherkinTable = gherkinTable + "| " + keyValues[0] + " | " + keyValues[1] + " |" + "<br />";
                     }
 
-                    ExtentReportHelper.Test.Log(Status.Info, $"[STEP PASSED] - {this.scenarioContext.StepContext.StepInfo.Text}" + "<br />" + "<br />" + $"[GHERKIN TABLE:]" + "<br />" + gherkinTable);
+                    ExtentReportHelper.Test.Log(Status.Info, $"[STEP PASSED] - {scenarioContext.StepContext.StepInfo.Text}" + "<br />" + "<br />" + $"[GHERKIN TABLE:]" + "<br />" + gherkinTable);
                 }
                 else
                 {
-                    ExtentReportHelper.Test.Log(Status.Info, $"[STEP PASSED] - {this.scenarioContext.StepContext.StepInfo.Text}");
+                    ExtentReportHelper.Test.Log(Status.Info, $"[STEP PASSED] - {scenarioContext.StepContext.StepInfo.Text}");
                 }
             }
 
-            this.stopwatch.Reset();
+            // If there is an associated API Response to a step then that response is outputted to the Extent Report.
+            if (scenarioContext.StepContext.StepInfo.Text.Contains("the user send the following API Request"))
+            {
+                ExtentReportHelper.Test.Log(Status.Info, $"[API RESPONSE] - {RestSharpHelper.ResponseBody.Content.ToString()}");
+            }
+
+            stopwatch.Reset();
         }
 
         /// <summary>
